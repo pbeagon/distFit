@@ -1,1 +1,2 @@
-# distFit a R library in draft form
+# distFit 
+## A R library in draft form
