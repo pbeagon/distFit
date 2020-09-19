@@ -33,7 +33,7 @@ aas-journal: Astrophysical Journal <- The name of the AAS journal.
 
 Many real world data sets are unimodal and positive values, but their asymmetry and skewness prevent their accurate representation as a normal distribution. One example is building energy use which are more accurately parameterised by a log-normal distribution or a two-parameter Weibull distribution; shape and scale act as distribution parameters, with shape values above 2.50 and 3.7 indicating log-normal and normal distributions respectively.  (NCSS LLC 2019, p. 122-15). The parameterisation process is from XXXXX and defined in Mathematices section. 
 
-[@Munkhammar2014] concluded that a Weibull distribution best fitted the electricity use data from 400 Swedish detached houses. Likewise, [@Irwin1986] Irwin et al. (1986) found that a Weibull distribution fitted the measured electrical energy of 1643 social housing units. 
+@Munkhammar2014 concluded that a Weibull distribution best fitted the electricity use data from 400 Swedish detached houses. Likewise, [@Irwin1986] Irwin et al. (1986) found that a Weibull distribution fitted the measured electrical energy of 1643 social housing units. 
 
 
 Weibull model parameterisation.
