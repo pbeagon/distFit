@@ -2,7 +2,7 @@
 title: 'distFit: A R package to test dataset fit with statistical distribution'
 tags:
   - R
-  - Weillbul distribution and paramters
+  - Weilbull distribution and parameters
   - Normal distribution and parameters
   - Quantile-quantile comparision plot
   - Distribution goodness-of-fit parameters
@@ -12,7 +12,7 @@ authors:
     orcid: 0000-0002-6555-7550
     affiliation: "1, 2" # (Multiple affiliations must be quoted)
 affiliations:
- - name: School of Electrical and Electrical Engineering, University College Dublin, Ireland
+ - name: School of Electrical and Electronic Engineering, University College Dublin, Ireland
    index: 1
  - name: Energy Institute, University College Dublin, Ireland
    index: 2
@@ -30,6 +30,9 @@ aas-journal: Astrophysical Journal <- The name of the AAS journal.
 
 # Statement of need
 `distFit` is an ... R package
+
+Many real world data sets are unimodal with a high central tendency, but their asymmetry around their mode value prevents their accurate representation as a normal distribution. One example is building energy-use, where the positive measurements are more accurately parameterised by a log-normal or Weibull distributions [Sweden paper, another paper].
+
 
 # Mathematics
 
