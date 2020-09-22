@@ -1,86 +1,97 @@
----
-title: 'distFit: A R package to test dataset fit with statistical distribution'
-tags:
-  - R
-  - Weilbull distribution and parameters
-  - Normal distribution and parameters
-  - Quantile-quantile comparision plot
-  - Distribution goodness-of-fit parameters
-  - Distribution predition error metric CV(RMSE) and NMBE 
-authors:
-  - name: Paul Beagon^[Custom footnotes for e.g. denoting who the corresponding author is can be included like this.]
-    orcid: 0000-0002-6555-7550
-    affiliation: "1, 2" # (Multiple affiliations must be quoted)
-affiliations:
- - name: School of Electrical and Electronic Engineering, University College Dublin, Ireland
-   index: 1
- - name: Energy Institute, University College Dublin, Ireland
-   index: 2
-date: 20 September 2020
-bibliography: paper.bib
 
-# Optional fields if submitting to a AAS journal too, see this blog post:
-# https://blog.joss.theoj.org/2018/12/a-new-collaboration-with-aas-publishing
-aas-doi: 10.3847/xxxxx <- update this with the DOI from AAS once you know it.
+---
+title: 'distFit: A R package to test data set fit with statistical distributions'
 aas-journal: Astrophysical Journal <- The name of the AAS journal.
+date: "22 September 2020"
+output:
+  html_document:
+    df_print: paged
+    fig_width: 3
+    fig_height: 3
+bibliography: paper.bib
+affiliations:
+- index: 1
+  name: School of Electrical and Electronic Engineering, University College Dublin,
+    Ireland
+- index: 2
+  name: Energy Institute, University College Dublin, Ireland
+authors:
+- affiliation: 1, 2
+  name: Paul Beagon^[Custom footnotes for e.g. denoting who the corresponding author
+    is can be included like this.]
+  orcid: 0000-0002-6555-7550
+tags:
+- R
+- Weibull distribution and parameters
+- Normal distribution and parameters
+- Quantile-quantile comparison plot
+- Distribution goodness-of-fit testing
+- Distribution goodness-of-fit errors CV(RMSE) and NMBE
+aas-doi: 10.3847/xxxxx <- update this with the DOI from AAS once you know it.
 ---
 
-# Summary
+# Background
+`distFit` is an ... R package
+
+Many real-world data sets contain positive and unimodal values, but their asymmetry and skewness prevent their accurate representation by a normal distribution. Energy use is such an example, which is more accurately parameterised by a log-normal distribution or a two-parameter Weibull distribution; the latter contains approximations of the log-normal and normal distributions.  Shape and scale form the two Weibull parameters, with shape values above 2.5 and 3.6 approximating to log-normal and normal distributions respectively [@NCSSLLC2019, p 122-15]. The `distFit` R package calculates the aforementioned shape and scale parameters for a given data set, then plots and evaluates its goodness-of-fit with the normal and Weibull distributions.
+
+@Koch2011 proposed the log-normal distribution to represent the large variation in energy use by homes in the same neighbourhood. The Weibull distribution has been used to fit the energy-use data of 400 Swedish detached houses [@Munkhammar2014], and 1643 social housing units in Northern Ireland [@Irwin1986].
 
 
 # Statement of need
-`distFit` is an ... R package
+Given that many real-world data sets diverge from from the normality, but fit closer to a Weibull distribution, `distFit` provides functions to compare the goodness-of-fit between the two distributions. Listing the four functions intuitively : 1) `QQcompare()` plots the data set around  from normality, 2) `findWeibullParams()` calculates the Weibull shape and scale parameters, 3) `histWeibull()` plots the data set's histogram and smoothed line alongside its Weibull distribution and finally, 4) `fitNormalWeibull()` tests *and* quantifies the error of the data set's fit with the two distributions.
 
-Many real world data sets are unimodal and positive values, but their asymmetry and skewness prevent their accurate representation as a normal distribution. One example is building energy use which are more accurately parameterised by a log-normal distribution or a two-parameter Weibull distribution; shape and scale act as distribution parameters, with shape values above 2.50 and 3.7 indicating log-normal and normal distributions respectively.  (NCSS LLC 2019, p. 122-15). The parameterisation process is from XXXXX and defined in Mathematices section. 
-
-@Munkhammar2014 concluded that a Weibull distribution best fitted the electricity use data from 400 Swedish detached houses. Likewise, @Irwin1986 found that a Weibull distribution fitted the measured electrical energy of 1643 social housing units. 
-
-
-Weibull model parameterisation.
-
-The function uses the parameters to fit the dataset to and a Weibull distribution and evaluate it using established model fit  indices [REF]   
-
-defn RMSE and CV-RMSE and purpose
-
-
-n and pretty function
+The four functions allow easy comparison of the data-set fit with both distributions, both visually and quantitatively. Plot functions `QQcompare()` and `histWeibull()` offer the user an `interval.number` argument to simplify changes to axis labels and histogram bins. Such changes are controlled by the functions' internal use of `pretty()`. The Weibull parameters produced from`findWeibullParams()` are used by `fitNormalWeibull()` to test distribution fits with the Anderson-Darling (AD) technique (available in `kSamples` library). Subsequently, the goodness-of-fit to each distribution are quantified by two indices: coefficient of variation of the root mean square error CV(RMSE) and normalised mean bias error (NMBE). Each index reveals a distinct characteristic of the fitting errors. Specifically, CV(RMSE) and NMBE quantify the errors' standard deviation and mean respectively [@Reddy2007]. For calculation of the Weibull parameters, CV(RMSE) and NMBE see the Mathematics section.
 
 # Mathematics
+Weibull parameter estimation is commonly calculated by the ''graphical method" or linear regression, for instance the wind energy assessment [@Wais2017]. Conversion of a Weibull cumulative 
+distribution to a linear equation requires double logarithms on each side. Q is the probability that an energy value E is less than E$_i$.
 
-Single dollars ($) are required for inline mathematics e.g. $f(x) = e^{\pi/x}$
-
-Double dollars make self-standing equations:
-
-$$\Theta(x) = \left\{\begin{array}{l}
-0\textrm{ if } x < 0\cr
-1\textrm{ else}
-\end{array}\right.$$
-
-You can also use plain \LaTeX for equations
-\begin{equation}\label{eq:fourier}
-\hat f(\omega) = \int_{-\infty}^{\infty} f(x) e^{i\omega x} dx
+\begin{equation} \label{eq:WeibullCDF}
+  Q(E<E_i) = exp^{-(E_i/C)^k} 
 \end{equation}
-and refer to \autoref{eq:fourier} from text.
+
+Combining Weibull shape (k) and scale (C) parameters forms a linear equation. Fitting this linear equation by least squares, estimates the Weibull distribution parameters in the slope (k) and intercept (-kln(C)). 
+
+\begin{equation} \label{eq:WeibullLinEq} 
+  ln(-lnQ) = kln(E_i) - kln(C) 
+\end{equation}
+
+The goodness-of-fit indices CV(RMSE) and NMBE are calculated across the entire data set of n measurements. After the data set is ordered, its measurements (m$_i$) are ranked by subscript i in the range 1--n. A predicted data set, also of n values, is generated from each distribution. Prediction errors equal m$_i$ subtracted by p$_i$, the corresponding value in the predicted data set. Finally, $\bar{m}$ represents the mean average of the measurements.
+
+\begin{equation} \label{eq:CVRMSE}
+CV(RMSE) = \frac{1}{\bar{m}} \sqrt{\frac{\sum^n_{i=i}(m_i-p_i)^2}{n}}
+\end{equation}
+
+\begin{equation} \label{eq:NMBE}
+ NMBE = \frac{1}{\bar{m}} \frac{\sum^n_{i=i}(m_i-p_i)}{n}
+\end{equation}
+
+
+# Examples
+As a typical initial test `QQcompare()` assumes, plots the data set's quantile-quantile (QQ) line assuming the data set is a normal distribution, alongside the actual values. Values diverging from the theoretical QQ lines are visually displayed, often occurs at the distribution tails (See Examples). 
+
+
+# Acknowledgements 
+This publication has emanated from research supported (in part) by Science Foundation Ireland (SFI) under the SFI Strategic Partnership Programme Grant Number SFI/15/SPP/E3125. The opinions, findings and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the Science Foundation Ireland.
+
 
 # Citations
 
 Citations to entries in paper.bib should be in
 [rMarkdown](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html)
-format.
+format.  LINK to my GitHub
 
-If you want to cite a software repository URL (e.g. something on GitHub without a preferred
-citation) then you can do it with the example BibTeX entry below for @fidgit.
 
-For a quick reference, the following citation commands can be used:
-- `@author:2001`  ->  "Author et al. (2001)"
-- `[@author:2001]` -> "(Author et al., 2001)"
-- `[@author1:2001; @author2:2001]` -> "(Author1 et al., 2001; Author2 et al., 2002)"
 
 # Figures 
 
+See \autoref{fig:example}
+
 Figures can be included like this:
-![Caption for example figure.\label{fig:example}](figure.png)
-and referenced from text using \autoref{fig:example}.
+![QQ plot with default arguments.\label{fig:example}](QQdefault.png){width=50%}
+
+
 
 Fenced code blocks are rendered with syntax highlighting:
 ```python
@@ -88,12 +99,7 @@ for n in range(10):
     yield f(n)
 ```	
 
-# Acknowledgements 
-
-This publication has emanated from research supported (in part) by Science Foundation Ireland (SFI) under the SFI Strategic Partnership Programme Grant Number SFI/15/SPP/E3125. The opinions, findings and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the Science Foundation Ireland.
-
 # References
-
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzODYzMTc5MV19
+eyJoaXN0b3J5IjpbMTg5ODk5Mzk0OV19
 -->
