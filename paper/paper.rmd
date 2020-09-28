@@ -3,12 +3,12 @@ title: 'distFit: Investigating goodness-of-fit with statistical distributions'
 aas-doi: 10.3847/xxxxx <- update this with the DOI from AAS once you know it.
 date: "28 September 2020"
 output:
-  pdf_document: default
   html_document:
     fig_caption: yes
     keep_md: yes
     self_contained: no
     theme: journal
+  pdf_document: default
 tags:
 - R
 - Weibull distribution and parameters
@@ -36,7 +36,7 @@ aas-journal: Astrophysical Journal <- The name of the AAS journal.
 <!-- https://r-pkgs.org/index.html -->
 
 
-## Background
+## Summary
 
 Often a real-world data set comprises only positive values in a unimodal distribution. The
 asymmetry and skewness of the data set, however, prevents its accurate representation by a normal

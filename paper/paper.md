@@ -36,7 +36,7 @@ aas-journal: Astrophysical Journal <- The name of the AAS journal.
 <!-- https://r-pkgs.org/index.html -->
 
 
-## Background
+## Summary
 
 Often a real-world data set comprises only positive values in a unimodal distribution. The
 asymmetry and skewness of the data set, however, prevents its accurate representation by a normal

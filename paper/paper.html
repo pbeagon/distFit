@@ -188,8 +188,8 @@ summary {
 <!-- rmarkdown::find_pandoc(dir = '~/Documents/PhD_local/R_package/pandoc') -->
 <!-- https://bookdown.org/yihui/rmarkdown-cookbook/ -->
 <!-- https://r-pkgs.org/index.html -->
-<div id="background" class="section level2">
-<h2>Background</h2>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
 <p>Often a real-world data set comprises only positive values in a unimodal distribution. The asymmetry and skewness of the data set, however, prevents its accurate representation by a normal distribution. Energy use is one example. Its positive values are more accurately parameterised by a log-normal distribution or Weibull distribution; the latter contains approximations of the log-normal and normal distributions. A two-parameter Weibull distribution is defined by its shape and scale. The distribution’s versatility is implemented by its shape parameter – values above 2.5 or 3.6 approximate to log-normal or normal distributions respectively <span class="citation">(NCSS LLC 2019, p 122-15)</span>.</p>
 <p>Regarding use cases, <span class="citation">Koch and Girard (2011)</span> proposed the log-normal distribution to represent the large variation in energy use by homes in the same neighbourhood. The Weibull distribution has been used to fit the energy-use data of 400 Swedish detached houses <span class="citation">(Munkhammar, Rydén, and Widén 2014)</span>, and 1643 social housing units in Northern Ireland <span class="citation">(Irwin, Monteith, and Beattie 1986)</span>. All the following code was written solely by the author during his PhD research into home energy retrofit at neighbourhood scale <span class="citation">(Beagon, Boland, and Saffari 2020)</span>.</p>
 <p>The <code>distFit</code> R package offers threefold functionality to investigate goodness-of-fit with normal and Weibull distributions. First, calculates the shape and scale parameters of the theoretical Weibull distribution, second, compares the data set to plots of both distributions, and third, evaluates the data set’s goodness-of-fit with both distributions.</p>
