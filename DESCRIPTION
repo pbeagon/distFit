@@ -1,11 +1,20 @@
-Package: evalHER
+Package: distFit
 Type: Package
-Title: What the Package Does (Title Case)
+Title: An R package to investigate goodness-of-fit with statistical distributions')
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: person("Paul", "Beagon", email = "pbeagon@gmail.comm", role = c("aut", "cre"))
+Maintainer: Paul Beagon <pbeagon@gmail.com>
+Description: The  `distFit` R package offers threefold functionality to investigate goodness-of-fit with normal and Weibull distributions. 
+    First, calculates the shape and scale parameters of the theoretical Weibull distribution, 
+    second, compares the data set to plots of both distributions, 
+    and third, evaluates the data set's goodness-of-fit with both distributions.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.1.1
+Imports: 
+    stats,
+    ggplot2,
+    SimDesign, 
+    kSamples, 
+    magrittr
