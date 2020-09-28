@@ -1,2 +1,2 @@
 # distFit 
-A R library in draft form
+An R package to investigate goodness-of-fit with statisical distributions
