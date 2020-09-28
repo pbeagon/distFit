@@ -11,10 +11,8 @@ findWeibullParams(x)
 }
 \value{
 A list holding the two parameters of the Weibull distribution:
-
-\code{shape} shape parameter
-
-\code{scale} scale parameter
+  \item{shape}{Shape parameter}
+  \item{scale}{Scale parameter}
 }
 \description{
 \code{findWeibullParams} uses linear regression, or the ``graphical method'', to estimate Weibull distribution parameters from a data set. Regression equations taken from Wais (2017).
