@@ -1,33 +1,29 @@
 ---
+# Example from https://joss.readthedocs.io/en/latest/submitting.html
 title: 'distFit: Investigating goodness-of-fit with statistical distributions'
-aas-doi: 10.3847/xxxxx <- update this with the DOI from AAS once you know it.
-date: "28 September 2020"
-output:
-  html_document:
-    fig_caption: yes
-    keep_md: yes
-    self_contained: no
-    theme: journal
-  pdf_document: default
 tags:
-- R
-- Weibull distribution and parameters
-- Normal distribution
-- Quantile-quantile plot for normality
-- Distribution goodness-of-fit testing
-- Distribution goodness-of-fit errors CV(RMSE) and NMBE
-affiliations:
-- name: School of Electrical and Electronic Engineering, University College Dublin,
-    Ireland
-  index: '1'
-- name: Energy Institute, University College Dublin, Ireland
-  index: '2'
-bibliography: paper.bib
+  - R
+  - Weibull distribution and parameters
+  - Normal distribution
+  - Quantile-quantile plot for normality
+  - Distribution goodness-of-fit testing
+  - Distribution goodness-of-fit errors CV(RMSE) and NMBE
 authors:
-- name: Paul Beagon
-  affiliation: 1, 2
-  orcid: 0000-0002-6555-7550
-aas-journal: Astrophysical Journal <- The name of the AAS journal.
+  - name: Paul Beagon
+    orcid: 0000-0002-6555-7550
+    affiliation: "1, 2" # (Multiple affiliations must be quoted)
+affiliations:
+ - name: School of Electrical and Electronic Engineering, University College Dublin, Ireland
+   index: 1
+ - name: Energy Institute, University College Dublin, Ireland
+   index: 2
+citation_author: Beagon, P.
+date: 29 September 2020
+year: 2020
+bibliography: paper.bib
+output: rticles::joss_article
+csl: apa.csl
+journal: JOSS
 ---
 
 <!-- rmarkdown::find_pandoc(dir = '~/Paul Beagon PhD/R package/pandoc/') -->
@@ -36,7 +32,7 @@ aas-journal: Astrophysical Journal <- The name of the AAS journal.
 <!-- https://r-pkgs.org/index.html -->
 
 
-## Summary
+# Summary
 
 Often a real-world data set comprises only positive values in a unimodal distribution. The
 asymmetry and skewness of the data set, however, prevents its accurate representation by a normal
@@ -53,7 +49,7 @@ been used to fit the energy-use data of 400 Swedish detached houses
 
 The  `distFit` R package offers threefold functionality to investigate goodness-of-fit with normal and Weibull distributions. First, calculates the shape and scale parameters of the theoretical Weibull distribution, second, compares the data set to plots of both distributions, and third, evaluates the data set's goodness-of-fit with both distributions.
 
-## Statement of need
+# Statement of need
 A gap exists in automated investigation if a real-world data set fits normality, or diverges to a Weibull distribution. Such an investigation should yield publishable plots, complemented by quantitative goodness-of-fit metrics. Package `distFit` provides functions to compare the
 goodness-of-fit between the two distributions. Listing the four functions
 intuitively: 1) `QQcompare()` plots the data set around the quantile-quantile (QQ) normality line, 2)
@@ -73,7 +69,7 @@ of the fitting errors. Specifically, CV(RMSE) and NMBE quantify the errors'
 standard deviation and mean respectively [@Reddy2007]. See Mathematics section for formulas to calculate the Weibull parameters, CV(RMSE) and NMBE.
 <br>
 
-## Mathematics
+# Mathematics
 
 The "graphical method" or linear regression is a popular method to estimate Weibull parameters, for instance in wind energy assessment [@Wais2017].
 Conversion of a Weibull cumulative distribution to a linear equation requires
@@ -103,7 +99,7 @@ CV(RMSE) = \frac{1}{\bar{m}} \sqrt{\frac{\sum^n_{i=i}(m_i-p_i)^2}{n}}
 \end{equation*}
 <br>
 
-## Examples
+# Examples
 
 Building on the statement of need, the following examples use `distFit` functions to complete a step-by-step data fitting. Each code example processes the 300-row date.frame `data` read from the package's test file `testData.csv`.   
 
