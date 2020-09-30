@@ -1,29 +1,16 @@
 ---
-# Example from https://joss.readthedocs.io/en/latest/submitting.html
-title: 'distFit: Investigating goodness-of-fit with statistical distributions'
-tags:
-  - R
-  - Weibull distribution and parameters
-  - Normal distribution
-  - Quantile-quantile plot for normality
-  - Distribution goodness-of-fit testing
-  - Distribution goodness-of-fit errors CV(RMSE) and NMBE
-authors:
-  - name: Paul Beagon
-    orcid: 0000-0002-6555-7550
-    affiliation: "1, 2" # (Multiple affiliations must be quoted)
-affiliations:
- - name: School of Electrical and Electronic Engineering, University College Dublin, Ireland
-   index: 1
- - name: Energy Institute, University College Dublin, Ireland
-   index: 2
-citation_author: Beagon, P.
-date: 29 September 2020
-year: 2020
+title: 'distFit: An R package for investigating goodness-of-fit with statistical distributions'
+author: Paul Beagon
+date: 30 September 2020
+output:
+  html_document:
+    fig_caption: yes
+    keep_md: yes
+    self_contained: no
+    theme: journal
+    toc: true
+  pdf_document: default
 bibliography: paper.bib
-output: rticles::joss_article
-csl: apa.csl
-journal: JOSS
 ---
 
 <!-- rmarkdown::find_pandoc(dir = '~/Paul Beagon PhD/R package/pandoc/') -->
@@ -41,16 +28,16 @@ parameterised by a log-normal distribution or Weibull
 distribution; the latter contains approximations of the log-normal and normal
 distributions. A two-parameter Weibull distribution is defined by its shape and scale. The distribution's versatility is implemented by its shape parameter -- values above 2.5 or 3.6 approximate to log-normal or normal distributions respectively [@NCSSLLC2019, p 122-15].
 
-Regarding use cases, @Koch2011 proposed the log-normal distribution to represent the large variation
+The  `distFit` R package offers threefold functionality to investigate a data set's goodness-of-fit with normal and Weibull distributions. First, calculates from the data set the shape and scale parameters of its theoretical Weibull distribution, second, compares the data set to plots of both distributions, and third, evaluates the data set's goodness-of-fit with both distributions.
+
+# Motivation and package functions
+A gap exists in automated investigation if a real-world data set fits normality, or diverges to a Weibull distribution. Regarding use cases, @Koch2011 proposed the log-normal distribution to represent the large variation
 in energy use by homes in the same neighbourhood. The Weibull distribution has
 been used to fit the energy-use data of 400 Swedish detached houses
 [@Munkhammar2014], and 1643 social housing units in Northern Ireland
-[@Irwin1986]. All the following code was written solely by the author during his PhD research into home energy retrofit at neighbourhood scale [@Beagon2020].
+[@Irwin1986].
 
-The  `distFit` R package offers threefold functionality to investigate goodness-of-fit with normal and Weibull distributions. First, calculates the shape and scale parameters of the theoretical Weibull distribution, second, compares the data set to plots of both distributions, and third, evaluates the data set's goodness-of-fit with both distributions.
-
-# Statement of need
-A gap exists in automated investigation if a real-world data set fits normality, or diverges to a Weibull distribution. Such an investigation should yield publishable plots, complemented by quantitative goodness-of-fit metrics. Package `distFit` provides functions to compare the
+The aforementioned investigation should yield publishable plots, complemented by quantitative goodness-of-fit metrics. Package `distFit` provides functions to compare the
 goodness-of-fit between the two distributions. Listing the four functions
 intuitively: 1) `QQcompare()` plots the data set around the quantile-quantile (QQ) normality line, 2)
 `findWeibullParams()` calculates the Weibull shape and scale parameters, 3)
@@ -179,13 +166,13 @@ $weibullNMBE
 [1] 0.238
 ```
 
-## Acknowledgments
+# Acknowledgments
 The author thanks Dr Paul Cuffe who encourages publication of code, and Dr Fiona Boland who advised on statistical techniques.
-This publication has emanated from research supported (in part) by Science
+This work has emanated from research supported (in part) by Science
 Foundation Ireland (SFI) under the SFI Strategic Partnership Programme Grant
 Number SFI/15/SPP/E3125. The opinions, findings and conclusions or
 recommendations expressed in this material are those of the author(s) and do not
 necessarily reflect the views of the Science Foundation Ireland.
 
 
-## References
+# References
