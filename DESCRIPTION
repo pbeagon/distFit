@@ -1,7 +1,7 @@
 Package: distFit
 Type: Package
 Title: An R package to investigate goodness-of-fit with statistical distributions')
-Version: 0.1.0
+Version: 1.0.0
 Author: person("Paul", "Beagon", email = "pbeagon@gmail.comm", role = c("aut", "cre"))
 Maintainer: Paul Beagon <pbeagon@gmail.com>
 Description: The  `distFit` R package offers threefold functionality to investigate goodness-of-fit with normal and Weibull distributions. 
